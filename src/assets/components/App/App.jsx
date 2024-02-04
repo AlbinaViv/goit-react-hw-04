@@ -24,13 +24,12 @@ export const App = () => {
       <SearchBar onSearch={searchPhotos} />
       {photos.length > 0 && (
         <ul>
-          {photos.map(({ id, url }) => (
+          {photos.map(({ id, urls: { small }, alt_description }) => (
             <li key={id}>
-              <a
-                href={url}
-                target="_blank"
-                rel="noreferrer noopener"
-              ></a>
+              <img
+                src={small}
+                alt={alt_description}
+              />
             </li>
           ))}
         </ul>
