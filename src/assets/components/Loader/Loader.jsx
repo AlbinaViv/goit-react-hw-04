@@ -1,7 +1,7 @@
 import { Blocks } from "react-loader-spinner";
 
 export const Loader = () => {
-  render(
+  return (
     <Blocks
       height="80"
       width="80"
