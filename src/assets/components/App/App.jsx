@@ -7,6 +7,8 @@ import css from "./App.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { useState } from "react";
 import { ImageGallery } from "../ImageGallery/ImageGallery";
+import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
+import { ImageModal } from "../ImageModal/ImageModal";
 
 const ACCESS_KEY = "AGNMiP3FVMhRRM0e6xxk52RIDOCH5aYr2KkPgy7w030";
 
@@ -31,6 +33,7 @@ export const App = () => {
   const [status, setStatus] = useState("idle");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentImg, setCurrentImg] = useState({ src: "", alt: "" });
+  const [galleryPage, setGalleryPage] = useState(1);
 
   function openModal(img) {
     setCurrentImg(img);
@@ -67,10 +70,14 @@ export const App = () => {
       return;
     }
     searchPhotos(search.trim());
+    setGalleryPage(1);
 
     // trim() прибирає зайві пробіли
 
     e.target.reset();
+  };
+  const onLoadMore = () => {
+    setGalleryPage((prevGalleryPage) => prevGalleryPage + 1);
   };
 
   return (
@@ -91,11 +98,12 @@ export const App = () => {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <img
+        <ImageModal
           src={currentImg.src}
           alt={currentImg.alt}
         />
       </Modal>
+      <LoadMoreBtn onClick={onLoadMore} />
       <Toaster />
     </>
   );

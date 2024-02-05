@@ -7,6 +7,7 @@ export const ImageGallery = ({ photos, openModal }) => {
     <ul className={css.imageList}>
       {photos.map(({ id, urls: { small, regular }, alt_description }) => (
         <li
+          className={css.conteiner}
           key={id}
           onClick={() => openModal({ src: regular, alt: alt_description })}
         >
