@@ -3,6 +3,7 @@ import axios from "axios";
 import css from "./App.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { useState } from "react";
+import { ImageGallery } from "../ImageGallery/ImageGallery";
 
 export const App = () => {
   const [photos, setPhotos] = useState([]);
@@ -20,20 +21,10 @@ export const App = () => {
   };
 
   return (
-    <div>
+    <>
       <SearchBar onSearch={searchPhotos} />
-      {photos.length > 0 && (
-        <ul>
-          {photos.map(({ id, urls: { small }, alt_description }) => (
-            <li key={id}>
-              <img
-                src={small}
-                alt={alt_description}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      {/* {loading && <Loader />} */}
+      <ImageGallery photos={photos} />
+    </>
   );
 };
