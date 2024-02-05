@@ -35,17 +35,18 @@ import css from "./SearchBar.module.css";
 // };
 
 export const SearchBar = ({ onSearch }) => {
-  const notify = () => toast.error("it's empty!");
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e.target.elements.query.value === "") {
-      notify("Here is your Search.");
-    } else if (e.target.elements.query.value !== "") {
+      notify();
+    } else {
       onSearch(e.target.elements.query.value);
     }
     e.target.reset();
   };
+
+  const notify = () => toast.error("There's nothing here!");
+  // const notifySuccess = () => toast.success("just what you were looking for");
 
   return (
     <form
