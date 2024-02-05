@@ -8,8 +8,8 @@ export const ImageGallery = ({ photos }) => {
       {photos.map(({ id, urls: { small }, alt_description }) => (
         <li key={id}>
           <ImageCard
-            src={small}
-            alt={alt_description}
+            small={small}
+            descr={alt_description}
           />
         </li>
       ))}

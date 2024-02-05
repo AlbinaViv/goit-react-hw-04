@@ -4,6 +4,7 @@ import css from "./App.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { useState } from "react";
 import { ImageGallery } from "../ImageGallery/ImageGallery";
+import { Loader } from "../Loader/Loader";
 
 export const App = () => {
   const [photos, setPhotos] = useState([]);
@@ -23,7 +24,7 @@ export const App = () => {
   return (
     <>
       <SearchBar onSearch={searchPhotos} />
-      {/* {loading && <Loader />} */}
+      {/* {loadin && <Loader />} */}
       <ImageGallery photos={photos} />
     </>
   );

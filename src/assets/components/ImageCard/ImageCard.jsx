@@ -1,12 +1,12 @@
 import css from "./ImageCard.module.css";
 
-export const ImageCard = ({ urls: { small }, alt_description }) => {
+export const ImageCard = ({ small, descr }) => {
   return (
     <div>
       <img
         className={css.imageCard}
         src={small}
-        alt={alt_description}
+        alt={descr}
         width="300"
         height="400"
       />
