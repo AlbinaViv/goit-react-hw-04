@@ -33,6 +33,7 @@ export const App = () => {
   const [status, setStatus] = useState("idle");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [loadin, setLoadin] = useState(false);
+  const [error, setError] = useState(false);
 
   const [currentImg, setCurrentImg] = useState({ src: "", alt: "" });
   const [galleryPage, setGalleryPage] = useState(1);
@@ -48,8 +49,10 @@ export const App = () => {
 
   const searchPhotos = async (query, page = 1) => {
     try {
-      setLoadin(true);
+      setError(false);
       setPhotos([]);
+      setLoadin(true);
+
       // const response = await axios.get(
       //   `/search/photos?client_id=${ACCESS_KEY}&query=${query}&page=${page}&lang=en`
       // );
@@ -62,8 +65,11 @@ export const App = () => {
         },
       });
       setPhotos(response.data.results);
+    } catch (error) {
+      setError(true);
+    } finally {
       setLoadin(false);
-    } catch (error) {}
+    }
   };
 
   const notify = () => toast.error("Please, enter key word!");
@@ -92,8 +98,9 @@ export const App = () => {
         search={search}
         setSearch={setSearch}
       />
-      {/* <Loader /> */}
       {loadin && <Loader />}
+      {error && <b>Oops, reload the page!</b>}
+
       <ImageGallery
         photos={photos}
         openModal={openModal}
