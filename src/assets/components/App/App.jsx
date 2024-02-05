@@ -32,6 +32,8 @@ export const App = () => {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("idle");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [loadin, setLoadin] = useState(false);
+
   const [currentImg, setCurrentImg] = useState({ src: "", alt: "" });
   const [galleryPage, setGalleryPage] = useState(1);
 
@@ -46,6 +48,8 @@ export const App = () => {
 
   const searchPhotos = async (query, page = 1) => {
     try {
+      setLoadin(true);
+      setPhotos([]);
       // const response = await axios.get(
       //   `/search/photos?client_id=${ACCESS_KEY}&query=${query}&page=${page}&lang=en`
       // );
@@ -58,6 +62,7 @@ export const App = () => {
         },
       });
       setPhotos(response.data.results);
+      setLoadin(false);
     } catch (error) {}
   };
 
@@ -87,8 +92,8 @@ export const App = () => {
         search={search}
         setSearch={setSearch}
       />
-      <Loader />
-      {/* {loadin && <Loader />} */}
+      {/* <Loader /> */}
+      {loadin && <Loader />}
       <ImageGallery
         photos={photos}
         openModal={openModal}
