@@ -1,10 +1,18 @@
+import { useState } from "react";
 import css from "./SearchBar.module.css";
 
-export const SearchBar = ({ handleSubmit, search, setSearch }) => {
+export const SearchBar = ({ handleSubmit }) => {
+  const [search, setSearch] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit(search.trim());
+    e.target.reset();
+  };
   return (
     <form
       className={css.form}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
       <input
         type="text"
