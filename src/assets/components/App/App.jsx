@@ -42,7 +42,7 @@ export const App = () => {
     };
     searchPhotos(search, galleryPage);
   }, [galleryPage, search]);
-
+  console.log(showBtn);
   function openModal(img) {
     setCurrentImg(img);
     setIsOpen(true);
@@ -85,9 +85,8 @@ export const App = () => {
         src={currentImg.src}
         alt={currentImg.alt}
       />
-      {photos.length > 0 && <LoadMoreBtn onClick={onLoadMore} />}
+      {showBtn && <LoadMoreBtn onClick={onLoadMore} />}
       {/* {showBtn && <LoadMoreBtn onClick={onLoadMore} />} */}
-
       <Toaster />
     </>
   );
