@@ -22,7 +22,7 @@ export const App = () => {
   const [showBtn, setShowBtn] = useState(false);
 
   {
-    showBtn && <button> Load more ... </button>;
+    showBtn && <button onClick={onLoadMore}> Load more ... </button>;
   }
   useEffect(() => {
     const searchPhotos = async (query, total_pages, page = 1) => {
@@ -75,7 +75,6 @@ export const App = () => {
       <SearchBar handleSubmit={handleSubmit} />
       {loadin && <Loader />}
       {error && <ErrorMessage />}
-
       <ImageGallery
         photos={photos}
         openModal={openModal}
@@ -86,7 +85,6 @@ export const App = () => {
         src={currentImg.src}
         alt={currentImg.alt}
       />
-
       {photos.length > 0 && <LoadMoreBtn onClick={onLoadMore} />}
       <Toaster />
     </>
