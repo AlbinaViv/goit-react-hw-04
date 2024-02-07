@@ -19,13 +19,21 @@ export const App = () => {
 
   const [currentImg, setCurrentImg] = useState({ src: "", alt: "" });
   const [galleryPage, setGalleryPage] = useState(1);
+  const [showBtn, setShowBtn] = useState(false);
+
+  {
+    showBtn && <button> Load more ... </button>;
+  }
   useEffect(() => {
-    const searchPhotos = async (query, page = 1) => {
+    const searchPhotos = async (query, total_pages, page = 1) => {
       try {
         setError(false);
         setLoadin(true);
-        const data = await fetchImages(query, page);
+        const data = await fetchImages(query, page, total_pages);
+        setShowBtn(total_pages !== page);
+
         setPhotos((prev) => [...prev, ...data.results]);
+        console.log(data);
       } catch (error) {
         setError(true);
       } finally {
