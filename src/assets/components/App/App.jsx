@@ -31,9 +31,7 @@ export const App = () => {
         setLoadin(true);
         const data = await fetchImages(query, page);
         setShowBtn(data.total_pages && data.total_pages !== page);
-
         setPhotos((prev) => [...prev, ...data.results]);
-        console.log(data);
       } catch (error) {
         setError(true);
       } finally {
@@ -42,7 +40,6 @@ export const App = () => {
     };
     searchPhotos(search, galleryPage);
   }, [galleryPage, search]);
-  console.log(showBtn);
   function openModal(img) {
     setCurrentImg(img);
     setIsOpen(true);
@@ -86,7 +83,6 @@ export const App = () => {
         alt={currentImg.alt}
       />
       {showBtn > 0 && <LoadMoreBtn onClick={onLoadMore} />}
-      {/* {showBtn && <LoadMoreBtn onClick={onLoadMore} />} */}
       <Toaster />
     </>
   );
