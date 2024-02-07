@@ -21,11 +21,11 @@ export const App = () => {
   const [galleryPage, setGalleryPage] = useState(1);
   const [showBtn, setShowBtn] = useState(false);
 
-  {
-    showBtn && <button onClick={onLoadMore}> Load more ... </button>;
-  }
+  // {
+  //   showBtn && <button> Load more ... </button>;
+  // }
   useEffect(() => {
-    const searchPhotos = async (query, total_pages, page = 1) => {
+    const searchPhotos = async (query, total_pages, page = galleryPage) => {
       try {
         setError(false);
         setLoadin(true);
@@ -86,6 +86,7 @@ export const App = () => {
         alt={currentImg.alt}
       />
       {photos.length > 0 && <LoadMoreBtn onClick={onLoadMore} />}
+
       <Toaster />
     </>
   );
