@@ -25,12 +25,12 @@ export const App = () => {
   //   showBtn && <button> Load more ... </button>;
   // }
   useEffect(() => {
-    const searchPhotos = async (query, total_pages, page = galleryPage) => {
+    const searchPhotos = async (query, page = 1) => {
       try {
         setError(false);
         setLoadin(true);
-        const data = await fetchImages(query, page, total_pages);
-        setShowBtn(total_pages !== page);
+        const data = await fetchImages(query, page);
+        setShowBtn(data.total_pages && data.total_pages !== page);
 
         setPhotos((prev) => [...prev, ...data.results]);
         console.log(data);
@@ -85,7 +85,7 @@ export const App = () => {
         src={currentImg.src}
         alt={currentImg.alt}
       />
-      {showBtn && <LoadMoreBtn onClick={onLoadMore} />}
+      {showBtn > 0 && <LoadMoreBtn onClick={onLoadMore} />}
       {/* {showBtn && <LoadMoreBtn onClick={onLoadMore} />} */}
       <Toaster />
     </>
