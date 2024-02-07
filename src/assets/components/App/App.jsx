@@ -86,6 +86,7 @@ export const App = () => {
         alt={currentImg.alt}
       />
       {photos.length > 0 && <LoadMoreBtn onClick={onLoadMore} />}
+      {/* {showBtn && <LoadMoreBtn onClick={onLoadMore} />} */}
 
       <Toaster />
     </>
