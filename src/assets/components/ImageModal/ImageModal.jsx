@@ -28,4 +28,4 @@ export const ImageModal = ({ src, alt, modalIsOpen, closeModal }) => {
   );
 };
 
-// Modal.setAppElement(App);
+Modal.setAppElement("#root");
