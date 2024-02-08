@@ -11,7 +11,7 @@ export const fetchImages = async (query, page) => {
       query,
       page,
       lang: "en",
-      per_page: "9",
+      per_page: "20",
       orientation: "portrait",
     },
   });
